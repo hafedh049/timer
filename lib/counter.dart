@@ -13,7 +13,7 @@ class Counter extends StatefulWidget {
 }
 
 class _CounterState extends State<Counter> {
-  int _duration = 1000;
+  int _duration = 1000 * 9;
 
   final GlobalKey<State> _counterKey = GlobalKey<State>();
 
@@ -42,42 +42,41 @@ class _CounterState extends State<Counter> {
 
   List<String> convertDuration(int milliseconds) {
     final Duration duration = Duration(milliseconds: milliseconds);
-
-    final int hours = duration.inHours;
-    final int minutes = duration.inMinutes.remainder(60);
-    final int seconds = duration.inSeconds.remainder(60);
-
-    final String hoursStr = hours.toString().padLeft(2, '0');
-    final String minutesStr = minutes.toString().padLeft(2, '0');
-    final String secondsStr = seconds.toString().padLeft(2, '0');
-
-    return <String>[hoursStr, minutesStr, secondsStr];
+    return <String>[duration.inHours.toString().padLeft(2, '0'), duration.inMinutes.remainder(60).toString().padLeft(2, '0'), duration.inSeconds.remainder(60).toString().padLeft(2, '0')];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: StatefulBuilder(
-          key: _counterKey,
-          builder: (BuildContext context, void Function(void Function()) _) {
-            final List<String> duration = convertDuration(_duration);
-            return Animate(
-              key: ValueKey<int>(_duration),
-              effects: <Effect>[FadeEffect(duration: 500.ms)],
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(duration[0], style: TextStyle(color: white, fontSize: 30.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  Text(" : ", style: TextStyle(color: white, fontSize: 30.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  Text(duration[1], style: TextStyle(color: white, fontSize: 30.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  Text(" : ", style: TextStyle(color: white, fontSize: 30.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  Text(duration[2], style: TextStyle(color: white, fontSize: 30.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                ],
-              ),
-            );
-          },
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Center(
+          child: StatefulBuilder(
+            key: _counterKey,
+            builder: (BuildContext context, void Function(void Function()) _) {
+              final List<String> duration = convertDuration(_duration);
+              return Container(
+                padding: const EdgeInsets.all(16),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(width: 3, color: purple)),
+                child: Animate(
+                  key: ValueKey<int>(_duration),
+                  effects: <Effect>[FadeEffect(duration: 500.ms)],
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(duration[0], style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                      Text(" : ", style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                      Text(duration[1], style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                      Text(" : ", style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                      Text(duration[2], style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
