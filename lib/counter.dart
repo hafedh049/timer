@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:timer/globals.dart';
 
 class Counter extends StatefulWidget {
@@ -64,11 +65,11 @@ class _CounterState extends State<Counter> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(duration[0], style: const TextStyle(color: white, fontSize: 16., fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  const Text(" : ", style: TextStyle(color: white, fontSize: 64, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  Text(duration[1], style: const TextStyle(color: white, fontSize: 64, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  const Text(" : ", style: TextStyle(color: white, fontSize: 64, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  Text(duration[2], style: const TextStyle(color: white, fontSize: 64, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                  Text(duration[0], style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                  Text(" : ", style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                  Text(duration[1], style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                  Text(" : ", style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                  Text(duration[2], style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
                 ],
               ),
             );

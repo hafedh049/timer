@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:timer/counter.dart';
 import 'package:timer/globals.dart';
 
@@ -11,6 +12,12 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: dark), debugShowCheckedModeBanner: false, home: const Counter());
+    return ResponsiveSizer(
+      builder: (BuildContext context, Orientation orientation, ScreenType screenType) => MaterialApp(
+        theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: dark),
+        debugShowCheckedModeBanner: false,
+        home: const Counter(),
+      ),
+    );
   }
 }
