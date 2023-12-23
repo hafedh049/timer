@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timer/counter.dart';
 import 'package:timer/globals.dart';
 
 void main() {
@@ -10,10 +11,6 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: dark),
-      debugShowCheckedModeBanner: false,
-      home: const Counter(),
-    );
+    return MaterialApp(theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: dark), debugShowCheckedModeBanner: false, home: const Counter());
   }
 }
