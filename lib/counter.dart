@@ -13,7 +13,7 @@ class Counter extends StatefulWidget {
 }
 
 class _CounterState extends State<Counter> {
-  int _duration = 36000000;
+  int _duration = 1000;
 
   final GlobalKey<State> _counterKey = GlobalKey<State>();
 
@@ -21,12 +21,16 @@ class _CounterState extends State<Counter> {
 
   @override
   void initState() {
-    _timer = Timer.periodic(1.seconds, (Timer timer) {
-      _counterKey.currentState!.setState(() => _duration -= 1000);
-      if (_duration == 0) {
-        _timer.cancel();
-      }
-    });
+    _timer = Timer.periodic(
+      1.seconds,
+      (Timer timer) {
+        if (_duration == 0) {
+          _timer.cancel();
+        } else {
+          _counterKey.currentState!.setState(() => _duration -= 1000);
+        }
+      },
+    );
     super.initState();
   }
 
@@ -65,11 +69,11 @@ class _CounterState extends State<Counter> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(duration[0], style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  Text(" : ", style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  Text(duration[1], style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  Text(" : ", style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
-                  Text(duration[2], style: TextStyle(color: white, fontSize: 25.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                  Text(duration[0], style: TextStyle(color: white, fontSize: 30.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                  Text(" : ", style: TextStyle(color: white, fontSize: 30.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                  Text(duration[1], style: TextStyle(color: white, fontSize: 30.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                  Text(" : ", style: TextStyle(color: white, fontSize: 30.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
+                  Text(duration[2], style: TextStyle(color: white, fontSize: 30.sp, fontWeight: FontWeight.w500, letterSpacing: 2)),
                 ],
               ),
             );
